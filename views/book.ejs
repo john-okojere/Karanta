@@ -1,0 +1,126 @@
+<%- include('containers/navbar') %>
+    <div style="margin-top: 10vh;"></div>
+    <style>
+        .gallery-wrap .img-big-wrap img {
+            max-height: 450px;
+            width: 100%;
+            display: inline-block;
+            cursor: zoom-in;
+        }
+        
+        .gallery-wrap .img-small-wrap .item-gallery {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #ddd;
+            margin: 7px 2px;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .gallery-wrap .img-small-wrap {
+            text-align: center;
+        }
+        
+        .gallery-wrap .img-small-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container py-5">
+
+
+        <div class="card p-3">
+            <div class="row">
+                <aside class="col-sm-5 border-right">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap">
+                            <div>
+                                <a href="#"><img src="<%= book.thumbnailUrl %>"></a>
+                            </div>
+                        </div>
+
+                        <!-- slider-nav.// -->
+                    </article>
+                    <!-- gallery-wrap .end// -->
+                </aside>
+                <aside class="col-sm-7">
+                    <article class="card-body p-5">
+                        <h3 class="title mb-3">
+                            <%= book.title %>
+                        </h3>
+
+                        <p class="price-detail-wrap">
+                            <span class="price h3 text-warning"> 
+            <span class="num"><%= book.pageCount %> pages</span>
+                            </span>
+                        </p>
+                        <div class="row">
+                            <!-- price-detail-wrap .// -->
+                            <dl class="item-property">
+                                <dt>Description</dt>
+                                <dd>
+                                    <p>
+                                        <%= book.shortDescription %>
+                                    </p>
+                                </dd>
+                            </dl>
+                            <dl class=" col param param-feature">
+                                <dt>ISBN</dt>
+                                <dd>
+                                    <%= book.isbn %>
+                                </dd>
+                            </dl>
+                            <!-- item-property-hor .// -->
+                            <dl class=" col param param-feature">
+                                <dt>Status</dt>
+                                <dd>
+                                    <%= book.status %>
+                                </dd>
+                            </dl>
+                            <!-- item-property-hor .// -->
+                            <dl class=" col param param-feature">
+                                <dt>Authors</dt>
+                                <dd>
+                                    <%= book.authors %>
+                                </dd>
+                            </dl>
+                            <!-- item-property-hor .// -->
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <dl class="param param-inline">
+                                    <dt>Category: </dt>
+                                    <dd>
+                                        <%= book.categories %>
+                                    </dd>
+                                </dl>
+                                <!-- item-property .// -->
+                            </div>
+
+                            <hr>
+                            <a href="#" class=" m-2 btn btn-lg btn-primary text-uppercase"> Borrow Book </a>
+                            <form action="/add-book/Your-Shelf/<%= book.id %>" method="post">
+                                <button class=" m-2 btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to Shelf </button></form>
+                    </article>
+                    <!-- card-body.// -->
+                </aside>
+                <!-- col.// -->
+                </div>
+                <!-- row.// -->
+                <%= book.longDescription %>
+            </div>
+        </div>
+        <!-- card.// -->
+
+
+    </div>
+    <!--container.//-->
+
+    <%- include('components/footer') %>

@@ -1,0 +1,17 @@
+        .view1 {
+            padding: 30px;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        
+        @media screen and (min-width:866px) {
+            .view1 p {
+                display: grid;
+                grid-template-columns: 50% 50%;
+                font-size: 1.5rem;
+            }
+            .view1 p {
+                padding: 50px;
+            }
+        }

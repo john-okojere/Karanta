@@ -1,0 +1,130 @@
+<%- include('containers/navbar') %>
+    <style>
+        .header-form {
+            width: 350px;
+            border: 1px black solid;
+            border-radius: 10px;
+        }
+        
+        .header-form:focus {
+            outline: none;
+            border: none;
+        }
+        
+        @media screen and (max-width:860px) {
+            .shelf-search {
+                display: block !important;
+            }
+        }
+    </style>
+    <div style=" padding:120px 40px 40px 40px;min-height: 40vh; height: 100%; background-color:#165956;width: 100%;color: white;border-radius: 20px;">
+        <h1>Browse Our Books</h1>
+        <p>Explore books from the E-library online for a very low price, and you'll be challenged to read more quickly and accurately.</p>
+        <div class=" btn btn-outline-secondary border-light">Check Out Your Shelf</div>
+    </div>
+    <div class="album  py-5 bg-light">
+
+        <div class="container ">
+            <div class="w-100 d-flex shelf-search" style="justify-content: space-between;align-items: center; padding:20px 0;">
+
+                <div style="width: inherit; padding: 10px 0;">
+                    <h3>Popular Books</h3>
+                    <small>
+                        <%= page*books.length - books.length %> - <%= page*books.length %> of <%= all_books.length %> result  <% if (query) { %>
+                         for  "<%= query %>"
+                        <% } %>
+</small>
+                </div>
+
+                <div class=" header-form" style="width: 100% !important;">
+                    <form action="/shelfs" method="get">
+                        <input type="text" value="" name="search" id="">
+                        <button type="submit">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-3">
+                <% for( let i = 0; i < books.length; i++ ) { %>
+                    <div class="col col-md-3 col-sm-4 col-lg-2">
+                        <div class="card shadow-sm">
+                            <a href="/book/<%= books[i].id %>" style="color:black;">
+                                    <img src="<%= books[i].thumbnailUrl %>" class="bd-placeholder-img card-img-top" style="width:100%;height:200px;" alt=" ">
+                            </a>
+
+                            <div class="card-body " style=" height: 160px !important;">
+                                <a href="/book/<%= books[i].id %>" style="color:black;">
+
+                                    <h6 style=" height: 30px !important;">
+                                        <%= books[i].title %>
+                                    </h6>
+                                    <p class="card-text " style=" height: 50px !important;z-index: 9;
+                                    position: relative;
+                                    background-color: white;">
+                                        <%= books[i].shortDescription %>
+                                    </p>
+                                </a>
+
+                                <div class="d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+                                    <div class="btn-group ">
+                                        <a href="/book/<%= books[i].id %>" class="btn btn-sm btn-outline-secondary "><i class="fa fa-eye " ></i></a>
+                                        <a href="/add-book/Your-Shelf/<%= books[i].id %>" class="btn btn-sm btn-outline-secondary "><i class="fa fa-cart-plus "></i></a>
+                                    </div>
+                                    <small class="text-muted "><%= books[i].pageCount %> Pages</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <br>
+        <nav aria-label="Page navigation example ">
+            <ul class="pagination " style="justify-content: center; ">
+                <% if ( page - 1 ) { %>
+                    <li class="page-item "><a class="page-link " href="/shelf/?page=<%= page - 1 %> ">Previous</a>
+                    </li>
+                    <% } %>
+                        <% if ( page - 2 > 0) { %>
+                            <li class="page-item ">
+                                <a class="page-link " href="/shelf/?page=<%= page - 2 %>">
+                                    <%= page - 2 %>
+                                </a>
+                            </li>
+                            <% } %>
+                                <% if ( Math.round(page / 2) > 0 && Math.round(page / 2) != page ) { %>
+                                    <li class="page-item ">
+                                        <a class="page-link " href="/shelf/?page=<%= Math.round(page / 2)|| Math.round(page / 2) %>">
+                                            <%= Math.round(page / 2)|| Math.round(page / 2) %>
+                                        </a>
+                                    </li>
+                                    <% } %>
+
+                                        <li class=" page-item ">
+                                            <a class="page-link " href="/shelf/?page=<%= page %> ">
+                                                <%= page %>
+                                            </a>
+                                        </li>
+                                        <% if ( page + 2 > 0) { %>
+                                            <li class="page-item ">
+                                                <a class="page-link " href="/shelf/?page=<%= page + 2 %>">
+                                                    <%= page + 2 %>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <% if ( page * 2 > 0) { %>
+                                                    <li class="page-item ">
+                                                        <a class="page-link " href="/shelf/?page=<%= page * 2 %>">
+                                                            <%= page * 2 %>
+                                                        </a>
+                                                    </li>
+                                                    <% } %>
+                                                        <% if ( page + 1) { %>
+                                                            <li class="page-item "><a class="page-link " href="/shelf/?page=<%= page + 1 %> ">Next</a> </li>
+                                                            <% } %>
+
+            </ul>
+        </nav>
+    </div>
+
+    <%- include( 'components/footer') %>

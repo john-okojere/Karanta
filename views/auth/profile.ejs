@@ -1,0 +1,98 @@
+<%- include('../containers/navbar') %>
+    <link rel="stylesheet" href="../assets/css/profile.css">
+
+    <div class="row p-3" style="place-content: center;margin-top: 12vh;overflow: hidden;">
+        <div class=" col-md-4 pt-5 justify-content-center align-items-center">
+
+            <div class="card">
+
+                <div class="upper">
+                    <div style="width: 100%;height: 100px;background-image: url('https://img.freepik.com/free-photo/library-with-books_1063-98.jpg?w=826&t=st=1676960129~exp=1676960729~hmac=2ae1f91c387e9d9d116e84ca14d02a8b4e583c39a0262a20d5265e692f38de89'); background-position:center;background-size: cover;"></div>
+
+                </div>
+
+                <div class="user text-center">
+
+                    <div class="profile">
+                        <div style="width:100px; margin:20px auto; height: 100px;background-image:url('https://www.kindpng.com/picc/m/153-1530388_mario-head-png-png-download-people-profile-pic.png');background-size: contain;background-position: center; border-radius:15px ;"></div>
+                        <img src=" " class="rounded-circle " width="80 ">
+
+                    </div>
+
+                </div>
+
+
+                <div class=" text-center pb-3">
+
+                    <h4 class="mb-0 ">
+                        <%= user.username %>
+                    </h4>
+                    <span class="text-muted d-block mb-2 "><%= user.email %></span>
+                    <sub class="text-muted d-block m-2 pb-4 ">ID: <%= user.id %></sub>
+                    <button class="btn btn-primary btn-sm follow ">Follow</button>
+
+
+                    <div class="d-flex justify-content-between align-items-center mt-4 px-4 ">
+
+                        <div class="stats px-2 ">
+                            <h6 class="mb-0 ">Followers</h6>
+                            <span>8,797</span>
+
+                        </div>
+
+
+                        <div class="stats px-2 ">
+                            <h6 class="mb-0 ">Books</h6>
+                            <span>142</span>
+
+                        </div>
+
+
+                        <div class="stats px-2 ">
+                            <h6 class="mb-0 ">Ranks</h6>
+                            <span>129</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class=" col-md-6 row py-5">
+            <% for( let i = 0; i < books.length; i++ ) { %>
+                <div class="col-6  mb-3">
+                    <div class="card shadow-sm">
+                        <a href="/book/<%= books[i].id %>" style="color:black;">
+                            <img src="<%= books[i].thumbnailUrl %>" class="bd-placeholder-img card-img-top" style="width:100%;height:200px;" alt=" ">
+                    </a>
+
+                        <div class="card-body " style=" height: 160px !important;">
+                            <a href="/book/<%= books[i].id %>" style="color:black;">
+
+                                <h6 style=" height: 30px !important;">
+                                    <%= books[i].title %>
+                                </h6>
+                                <p class="card-text " style=" height: 50px !important;z-index: 9;
+                            position: relative;
+                            background-color: white;">
+                                    <%= books[i].shortDescription %>
+                                </p>
+                            </a>
+
+                            <div class="d-flex justify-content-between align-items-center" style="margin-top: 10px;">
+                                <div class="btn-group ">
+                                    <a href="/book/<%= books[i].id %>" class="btn btn-sm btn-outline-secondary "><i class="fa fa-eye " ></i></a>
+                                    <a href="#" class="btn btn-sm btn-outline-secondary "><i class="fa fa-cart-plus "></i></a>
+                                </div>
+                                <small class="text-muted "><%= books[i].pageCount %> Pages</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    </div>
+    <%- include( '../components/footer') %>
