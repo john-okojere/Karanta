@@ -11,6 +11,7 @@ const BookSchema = new mongoose.Schema({
     shortDescription: String,
     longDescription: String,
     status: String,
+    pdf: String,
     authors: [],
     categories: []
 });

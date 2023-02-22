@@ -105,9 +105,13 @@
                             </div>
 
                             <hr>
-                            <a href="#" class=" m-2 btn btn-lg btn-primary text-uppercase"> Borrow Book </a>
-                            <form action="/add-book/Your-Shelf/<%= book.id %>" method="post">
-                                <button class=" m-2 btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to Shelf </button></form>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="<%= book.pdf %>" class=" m-2 btn btn-lg btn-primary text-uppercase"> Borrow Book </a>
+                                </div>
+                                <form class="col" action="/add-book/Your-Shelf/<%= book.id %>" method="post">
+                                    <button class=" m-2 btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to Shelf </button></form>
+                            </div>
                     </article>
                     <!-- card-body.// -->
                 </aside>
